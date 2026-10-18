@@ -1,0 +1,1056 @@
+/* ==========================================================================
+   ContextForge Terminal Components
+   - Minimalist Terminal Header & Nav
+   - CLI Hero & Terminal IDE Player
+   - CLI Diff Comparison Matrix
+   - Cat/Vim Starter Kit .cursorrules Viewer
+   - Telemetry Grid Curriculum
+   - Terminal Contract Pricing Tiers
+   - Terminal Modals & Toasts
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Terminal Header & Nav
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.brand-icon {
+  width: 26px;
+  height: 26px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--term-green);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--term-green);
+  background: var(--term-green-dim);
+}
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 0.25rem 0.65rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.mobile-toggle {
+  display: none;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. Terminal Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  position: relative;
+}
+
+.hero-content {
+  text-align: left;
+  max-width: 1000px;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.hero-headline {
+  font-size: clamp(1.85rem, 3.8vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+}
+
+.hero-headline .text-gradient {
+  color: var(--term-green);
+}
+
+.hero-subtext {
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 740px;
+  margin-bottom: var(--space-6);
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+
+.hero-metrics {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.hero-metrics strong {
+  color: var(--term-green);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   3. Terminal IDE Player (Pure CLI TUI Aesthetic)
+   -------------------------------------------------------------------------- */
+.ide-wrapper {
+  max-width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+}
+
+.ide-header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.ide-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.window-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  display: inline-block;
+  background: var(--border-light);
+}
+.window-dot.close { background: var(--term-red); }
+.window-dot.min { background: var(--term-amber); }
+.window-dot.max { background: var(--term-green); }
+
+.ide-step-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ide-step-tabs::-webkit-scrollbar { display: none; }
+
+.ide-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 0.25rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ide-tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ide-tab-btn.active {
+  color: #000000;
+  background: var(--term-green);
+  border-color: var(--term-green);
+  font-weight: 700;
+}
+
+.ide-player-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.ide-btn-icon {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ide-btn-icon:hover {
+  color: var(--term-green);
+  border-color: var(--term-green);
+}
+
+.ide-progress-bar {
+  width: 50px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.ide-progress-fill {
+  height: 100%;
+  background: var(--term-green);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* IDE Body Split */
+.ide-body {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  min-height: 420px;
+}
+
+.ide-sidebar {
+  background: #090c10;
+  border-right: 1px solid var(--border-subtle);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ide-step-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ide-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--term-green);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ide-step-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.ide-step-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ide-terminal-pane {
+  margin-top: var(--space-4);
+  background: #05070a;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.ide-term-header {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ide-term-cmd {
+  color: var(--term-green);
+  word-break: break-all;
+  line-height: 1.45;
+}
+
+.ide-editor {
+  display: flex;
+  flex-direction: column;
+  background: #07090d;
+}
+
+.ide-editor-tabbar {
+  display: flex;
+  align-items: center;
+  background: #0b0e14;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 0.75rem;
+  height: 34px;
+}
+
+.ide-active-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  background: #07090d;
+  border-left: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--term-green);
+  padding: 0.35rem 0.8rem;
+  height: 100%;
+}
+
+.ide-code-container {
+  padding: 1.25rem;
+  overflow-x: auto;
+  flex: 1;
+}
+
+.ide-code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #e6edf3;
+  white-space: pre;
+}
+
+.ide-footer-status {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.ide-status-text {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   4. CLI Comparison Matrix (Stage 2 - Red/Green Telemetry Diff)
+   -------------------------------------------------------------------------- */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.comparison-card {
+  border-radius: var(--radius-sm);
+  padding: clamp(1.25rem, 2.5vw, 1.85rem);
+  position: relative;
+  border: 1px solid var(--border-subtle);
+}
+
+.comparison-card.bad {
+  background: #0e090a;
+  border-color: rgba(248, 81, 73, 0.4);
+}
+
+.comparison-card.good {
+  background: #080f0a;
+  border-color: var(--term-green-border);
+}
+
+.comparison-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+}
+
+.comparison-card.bad .comparison-badge {
+  background: rgba(248, 81, 73, 0.15);
+  color: var(--term-red);
+  border: 1px solid rgba(248, 81, 73, 0.4);
+}
+
+.comparison-card.good .comparison-badge {
+  background: var(--term-green-dim);
+  color: var(--term-green);
+  border: 1px solid var(--term-green-border);
+}
+
+.comparison-title {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.comparison-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.comparison-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.comparison-icon {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.comparison-card.bad .comparison-icon {
+  color: var(--term-red);
+}
+
+.comparison-card.good .comparison-icon {
+  color: var(--term-green);
+}
+
+.comparison-item strong {
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   5. Terminal Starter Kit & .cursorrules Cat Box
+   -------------------------------------------------------------------------- */
+.starter-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.starter-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.starter-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.starter-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.starter-code-box {
+  background: #05070a;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.starter-code-header {
+  background: #0b0e14;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.45rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.starter-filename {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.starter-copy-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.starter-copy-btn:hover {
+  color: #000;
+  background: var(--term-green);
+  border-color: var(--term-green);
+}
+
+.starter-code-body {
+  padding: 1rem;
+  max-height: 290px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #c9d1d9;
+  line-height: 1.55;
+  white-space: pre;
+}
+
+/* --------------------------------------------------------------------------
+   6. Telemetry Bento Grid Curriculum (Stage 4)
+   -------------------------------------------------------------------------- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-flow: dense;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.bento-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: clamp(1.25rem, 2.5vw, 1.85rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color var(--transition-fast);
+  position: relative;
+}
+
+.bento-card:hover {
+  border-color: var(--term-green);
+}
+
+.bento-card.col-7 { grid-column: span 7; }
+.bento-card.col-5 { grid-column: span 5; }
+
+.bento-tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.bento-module-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--term-green);
+  font-weight: 700;
+}
+
+.bento-title {
+  font-size: 1.2rem;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+.bento-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: var(--space-4);
+}
+
+.bento-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-3);
+}
+
+.bento-bullet {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bento-bullet::before {
+  content: "::";
+  color: var(--term-green);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   7. Terminal Contract Pricing (Stage 5)
+   -------------------------------------------------------------------------- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+  max-width: 920px;
+  margin-top: var(--space-6);
+}
+
+.pricing-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.pricing-card.featured {
+  border: 1px solid var(--term-green);
+  background: #09100a;
+}
+
+.pricing-badge {
+  align-self: flex-start;
+  margin-bottom: var(--space-3);
+}
+
+.pricing-name {
+  font-size: 1.35rem;
+  margin-bottom: var(--space-2);
+}
+
+.pricing-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--space-4);
+  min-height: 42px;
+}
+
+.pricing-price-box {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pricing-amount {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.pricing-installment {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--term-green);
+  margin-top: 4px;
+}
+
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  flex-grow: 1;
+}
+
+.pricing-feature-item {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  line-height: 1.45;
+}
+
+.pricing-feature-icon {
+  color: var(--term-green);
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.guarantee-box {
+  max-width: 780px;
+  margin-top: var(--space-8);
+  background: var(--bg-surface);
+  border: 1px solid var(--term-green-border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.guarantee-icon {
+  color: var(--term-green);
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.guarantee-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.guarantee-text {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   8. Terminal Modals, Forms & Toasts
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--term-green);
+  border-radius: var(--radius-sm);
+  max-width: 500px;
+  width: 100%;
+  padding: clamp(1.25rem, 3vw, 1.85rem);
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+.modal-close-btn:hover {
+  color: #000;
+  background: var(--term-red);
+  border-color: var(--term-red);
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-2);
+}
+
+.modal-sub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+  line-height: 1.5;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.form-input {
+  background: #05070a;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--term-green);
+}
+
+.form-demo-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* Toast Notification */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--bg-surface);
+  border: 1px solid var(--term-green);
+  color: var(--term-green);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all var(--transition-fast);
+  pointer-events: auto;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   9. Terminal Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  background: #06070a;
+  padding: clamp(2.5rem, 5vw, 4rem) 0 1.5rem;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.footer-brand {
+  max-width: 340px;
+}
+
+.footer-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: var(--space-2);
+}
+
+.footer-links-group {
+  display: flex;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-col-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--term-green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-link {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover { color: var(--term-green); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   10. Responsiveness Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .ide-body {
+    grid-template-columns: 1fr;
+  }
+  .ide-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .starter-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .bento-card.col-7,
+  .bento-card.col-5 {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu, .nav-status {
+    display: none;
+  }
+  .mobile-toggle {
+    display: block;
+  }
+  .hero-headline {
+    font-size: 1.85rem;
+  }
+  .hero-metrics {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .ide-step-tabs {
+    width: 100%;
+  }
+}

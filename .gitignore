@@ -1,0 +1,12 @@
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Temp & build artifacts
+scratch/
+tmp/
+dist/
+build/

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContextForge — Инженерная школа разработки с AI: .cursorrules, агенты и чистый код</title>
+  <meta name="description" content="Практический курс по разработке с AI: перестаньте писать спагетти-код из чата. Научитесь управлять контекстом, настраивать .cursorrules и запускать автономных терминальных агентов.">
+  <meta name="keywords" content="cursor, windsurf, cursorrules, ai development, supabase, nextjs, llm agents">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="ContextForge — Инженерная школа разработки с AI">
+  <meta property="og:description" content="Управляйте AI как инженерной командой: .cursorrules, контекстный инжиниринг, Next.js и Supabase без спагетти-кода.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://contextforge.dev">
+
+  <!-- SVG Favicon: Terminal Prompt Green -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2333ff33'><rect width='24' height='24' rx='2' fill='%23090b0e'/><path d='M6 8l4 4-4 4M12 16h6' stroke='%2333ff33' stroke-width='2' stroke-linecap='square'/></svg>">
+
+  <!-- Google Fonts: JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       Header & Navigation
+       ======================================================================== -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo" aria-label="ContextForge Главная">
+        <div class="brand-icon">&gt;_</div>
+        <span>contextforge<span style="color: var(--term-green);">.sys</span></span>
+      </a>
+
+      <div class="nav-status">
+        <span class="pulse-dot"></span>
+        <span>Поток 04 • Старт 1 ноября</span>
+      </div>
+
+      <nav aria-label="Основная навигация">
+        <ul class="nav-menu">
+          <li><a href="#ide-demo" class="nav-link">Демо IDE</a></li>
+          <li><a href="#anti-hype" class="nav-link">Матрица</a></li>
+          <li><a href="#starter-kit" class="nav-link">Starter Kit</a></li>
+          <li><a href="#curriculum" class="nav-link">Программа</a></li>
+          <li><a href="#pricing" class="nav-link">Тарифы</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#pricing" class="btn btn-primary" style="padding: 0.55rem 1.15rem; font-size: 0.85rem;">
+          Принять участие
+        </a>
+        <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Открыть меню">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================================
+         Stage 1: Hero Section & Interactive IDE Terminal Player
+         ======================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="section-eyebrow">
+            <span class="pulse-dot"></span> AI-Native Engineering System
+          </span>
+          
+          <h1 class="hero-headline">
+            Перестаньте просить код у чата.<br>
+            <span class="text-gradient">Управляйте AI как инженерной командой</span>
+          </h1>
+
+          <p class="hero-subtext">
+            Система контекстного инжиниринга, жестких правил .cursorrules и автономных агентов для разработки чистых продакшн-приложений без спагетти-кода.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#pricing" class="btn btn-primary" id="cta-enroll-hero">
+              Записаться на курс
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#starter-kit" class="btn btn-secondary" id="cta-starter-hero">
+              Забрать .cursorrules бесплатно
+            </a>
+          </div>
+
+          <div class="hero-metrics">
+            <span>Экономия: <strong>100+ часов</strong></span>
+            <span>•</span>
+            <span>Качество: <strong>0 галлюцинаций в схемах БД</strong></span>
+            <span>•</span>
+            <span>Скорость: <strong>MVP за 7 дней</strong></span>
+          </div>
+        </div>
+
+        <!-- Interactive IDE Terminal Player (Key Hero Anchor) -->
+        <div class="ide-wrapper" id="ide-demo" aria-label="Интерактивный плеер процесса сборки фичи">
+          <div class="ide-header">
+            <div class="ide-window-controls">
+              <span class="window-dot close"></span>
+              <span class="window-dot min"></span>
+              <span class="window-dot max"></span>
+            </div>
+
+            <!-- Dynamic step tabs -->
+            <div class="ide-step-tabs" id="ide-step-tabs">
+              <!-- Rendered via js/app.js -->
+            </div>
+
+            <div class="ide-player-controls">
+              <div class="ide-progress-bar" title="Прогресс шага">
+                <div class="ide-progress-fill" id="ide-progress-fill"></div>
+              </div>
+              <button class="ide-btn-icon" id="ide-prev-btn" title="Предыдущий шаг" aria-label="Предыдущий шаг">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button class="ide-btn-icon" id="ide-play-pause-btn" title="Автовоспроизведение" aria-label="Пауза/Плей">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="6" y="4" width="4" height="16"></rect>
+                  <rect x="14" y="4" width="4" height="16"></rect>
+                </svg>
+              </button>
+              <button class="ide-btn-icon" id="ide-next-btn" title="Следующий шаг" aria-label="Следующий шаг">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="ide-body">
+            <!-- Sidebar: Context & Terminal Log -->
+            <div class="ide-sidebar">
+              <div class="ide-step-info">
+                <span class="ide-step-num" id="ide-step-num">Шаг 01 из 05 • Spec-Driven</span>
+                <h2 class="ide-step-title" id="ide-step-title">Промпт спецификации (PRD)</h2>
+                <p class="ide-step-desc" id="ide-step-desc">Постановка задачи через структуру, а не через чат</p>
+
+                <div class="ide-terminal-pane">
+                  <div class="ide-term-header">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="4 17 10 11 4 5"></polyline>
+                      <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                    <span>Terminal Session</span>
+                  </div>
+                  <div class="ide-term-cmd" id="ide-term-cmd">$ npx contextforge spec:generate --feature auth-billing</div>
+                </div>
+              </div>
+
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">
+                💡 Нажмите на любой шаг вверху для ручного переключения.
+              </div>
+            </div>
+
+            <!-- Editor: Code / File Viewer -->
+            <div class="ide-editor">
+              <div class="ide-editor-tabbar">
+                <div class="ide-active-tab">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                    <polyline points="13 2 13 9 20 9"></polyline>
+                  </svg>
+                  <span id="ide-active-file">specs/prd-billing.md</span>
+                </div>
+              </div>
+
+              <div class="ide-code-container">
+                <pre class="ide-code"><code id="ide-code-content">// Загрузка кода шага...</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="ide-footer-status">
+            <div class="ide-status-text" id="ide-status-text">
+              <span class="pulse-dot"></span> Спецификация сгенерирована и зафиксирована в Git
+            </div>
+            <div class="badge badge-success" id="ide-status-badge">Spec-Driven</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         Stage 2: Validation & Agitation (The Anti-Hype Matrix)
+         ======================================================================== -->
+    <section class="section-spacing" id="anti-hype" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header center">
+          <h2 class="section-title">Почему ваш прошлый опыт с нейросетями привел к спагетти-коду</h2>
+          <p class="section-description">
+            Если просто копировать код из веб-чата, проект умирает на первой тысяче строк. Нейросеть теряет контекст, стирает чужой код и галлюцинирует несуществующими методами.
+          </p>
+        </div>
+
+        <div class="comparison-grid">
+          <!-- The Bad Way -->
+          <div class="comparison-card bad">
+            <div class="comparison-badge">
+              <span>✕</span> Как пишет код 95% людей
+            </div>
+            <h3 class="comparison-title">Слепой чат-промптинг</h3>
+            <ul class="comparison-list">
+              <li class="comparison-item">
+                <div class="comparison-icon">✕</div>
+                <div><strong>Утечка контекста:</strong> На 3-м запросе модель забывает структуру проекта и начинает переписывать рабочие функции на костыли.</div>
+              </li>
+              <li class="comparison-item">
+                <div class="comparison-icon">✕</div>
+                <div><strong>Спагетти в базе данных:</strong> Генерирует таблицы без RLS-политик, открывая публичный доступ к данным всех пользователей.</div>
+              </li>
+              <li class="comparison-item">
+                <div class="comparison-icon">✕</div>
+                <div><strong>Бесконечные круги багов:</strong> Ошибка в консоли приводит к 10 новым попыткам «почини этот файл», пока весь билд не сломается.</div>
+              </li>
+              <li class="comparison-item">
+                <div class="comparison-icon">✕</div>
+                <div><strong>Иллюзия скорости:</strong> Прототип за 10 минут, а затем 3 недели ручного разгребания нерабочего кода.</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- The Good Way -->
+          <div class="comparison-card good">
+            <div class="comparison-badge">
+              <span>✓</span> Подход ContextForge
+            </div>
+            <h3 class="comparison-title">Инженерный AI-пайплайн</h3>
+            <ul class="comparison-list">
+              <li class="comparison-item">
+                <div class="comparison-icon">✓</div>
+                <div><strong>Жесткие рамки через .cursorrules:</strong> Модель физически не может применить код, нарушающий типы или правила проекта.</div>
+              </li>
+              <li class="comparison-item">
+                <div class="comparison-icon">✓</div>
+                <div><strong>Zero-Trust архитектура Supabase:</strong> Каждая таблица автоматически защищена Row Level Security на уровне миграции.</div>
+              </li>
+              <li class="comparison-item">
+                <div class="comparison-icon">✓</div>
+                <div><strong>Автономные терминальные агенты:</strong> Агент сам запускает тесты, читает реальный stack trace и вносит хирургические дифф-правки.</div>
+              </li>
+              <li class="comparison-item">
+                <div class="comparison-icon">✓</div>
+                <div><strong>Spec-Driven Development:</strong> Сначала пишется архитектурный PRD, затем по нему собирается надежный продакшн-код.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         Stage 3: Lead Magnet & Tripwire (Starter Kit & .cursorrules Inspector)
+         ======================================================================== -->
+    <section class="section-spacing" id="starter-kit">
+      <div class="container">
+        <div class="starter-wrapper">
+          <div class="starter-info">
+            <span class="section-eyebrow">
+              <span class="pulse-dot"></span> Бесплатный первый шаг
+            </span>
+            <h2 class="section-title">Боевой Starter Kit: правила .cursorrules под Next.js 15 и Supabase</h2>
+            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+              Заберите протестированную конфигурацию системных правил прямо сейчас. Скопируйте её в корень проекта, чтобы редактор Cursor перестал галлюцинировать и сразу писал строгий типизированный код.
+            </p>
+
+            <div class="starter-features">
+              <div class="starter-feature">
+                <span style="color: var(--accent-primary); font-weight: bold;">✓</span>
+                <span>Защита от затирания кода и плейсхолдеров `// TODO`</span>
+              </div>
+              <div class="starter-feature">
+                <span style="color: var(--accent-primary); font-weight: bold;">✓</span>
+                <span>Обязательная проверка Supabase Row-Level Security</span>
+              </div>
+              <div class="starter-feature">
+                <span style="color: var(--accent-primary); font-weight: bold;">✓</span>
+                <span>Строгие правила для Next.js 15 Server Actions & Zod</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 1rem; display: flex; gap: var(--space-4); flex-wrap: wrap;">
+              <button class="btn btn-primary" data-open-modal="workshop" id="btn-open-workshop-starter">
+                Смотреть 40-мин воркшоп
+              </button>
+              <a href="#curriculum" class="btn btn-secondary">
+                Изучить полную программу
+              </a>
+            </div>
+          </div>
+
+          <!-- Code box with Live .cursorrules -->
+          <div class="starter-code-box">
+            <div class="starter-code-header">
+              <div class="starter-filename">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <span>.cursorrules (production)</span>
+              </div>
+              <button class="starter-copy-btn" id="starter-copy-btn" aria-label="Скопировать .cursorrules">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <pre class="starter-code-body"><code id="starter-rules-code">// Загрузка .cursorrules...</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         Stage 4: Solution / System (Gapless Bento Grid Curriculum)
+         ======================================================================== -->
+    <section class="section-spacing" id="curriculum" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header center">
+          <h2 class="section-title">Программа курса: система, которая не устареет</h2>
+          <p class="section-description">
+            Мы учим не расположению кнопок в конкретном интерфейсе, а мышлению AI-архитектора. Какая бы новая модель ни вышла завтра — принципы декомпозиции и контекстного контроля останутся прежними.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Module 1: col-7 -->
+          <div class="bento-card col-7">
+            <div>
+              <div class="bento-tag-row">
+                <span class="bento-module-tag">Модуль 01 • Фундамент</span>
+                <span class="badge">Spec-Driven</span>
+              </div>
+              <h3 class="bento-title">Context Architecture & Spec-Driven Development</h3>
+              <p class="bento-desc">
+                Как перестать писать код руками и начать мыслить спецификациями. Декомпозиция эпиков в понятные для LLM документы PRD, предотвращение потери контекста (Lost in the Middle) и проектирование архитектуры до первой строчки кода.
+              </p>
+            </div>
+            <ul class="bento-bullets">
+              <li class="bento-bullet">Анатомия PRD, который модель реализует с первого раза без галлюцинаций</li>
+              <li class="bento-bullet">Управление контекстным окном на проектах от 10 000 строк кода</li>
+              <li class="bento-bullet">Шаблоны архитектурных спецификаций для связки Next.js + База данных</li>
+            </ul>
+          </div>
+
+          <!-- Module 2: col-5 -->
+          <div class="bento-card col-5">
+            <div>
+              <div class="bento-tag-row">
+                <span class="bento-module-tag">Модуль 02 • Контроль</span>
+                <span class="badge">Guardrails</span>
+              </div>
+              <h3 class="bento-title">Hard Guardrails: Магия .cursorrules</h3>
+              <p class="bento-desc">
+                Создание непробиваемых правил для редактора Cursor и Windsurf. Как заставить нейросеть строго соблюдать соглашения о типах и запретить трогать стабильные файлы.
+              </p>
+            </div>
+            <ul class="bento-bullets">
+              <li class="bento-bullet">Конфигурации под React, TypeScript, Python и Go</li>
+              <li class="bento-bullet">Запреты на плейсхолдеры и неявные any типы</li>
+              <li class="bento-bullet">Хирургические точечные дифф-правки больших файлов</li>
+            </ul>
+          </div>
+
+          <!-- Module 3: col-5 -->
+          <div class="bento-card col-5">
+            <div>
+              <div class="bento-tag-row">
+                <span class="bento-module-tag">Модуль 03 • Безопасность</span>
+                <span class="badge badge-success">Database Safe</span>
+              </div>
+              <h3 class="bento-title">Supabase, Auth & Data Integrity</h3>
+              <p class="bento-desc">
+                Работа с базами данных через AI без страха случайно снести прод или допустить утечку данных чужих аккаунтов.
+              </p>
+            </div>
+            <ul class="bento-bullets">
+              <li class="bento-bullet">Автоматические политики Row Level Security (RLS)</li>
+              <li class="bento-bullet">Безопасная генерация миграций и сидирование тестовых данных</li>
+              <li class="bento-bullet">Идемпотентная обработка вебхуков Stripe и авторизация</li>
+            </ul>
+          </div>
+
+          <!-- Module 4: col-7 -->
+          <div class="bento-card col-7">
+            <div>
+              <div class="bento-tag-row">
+                <span class="bento-module-tag">Модуль 04 • Автономия</span>
+                <span class="badge">Agents & CI</span>
+              </div>
+              <h3 class="bento-title">Терминальные агенты & Автономный дебаггинг</h3>
+              <p class="bento-desc">
+                Делегирование рутины терминальным CLI-агентам (Claude Code, Aider, Roo). Агент сам читает логи ошибок, запускает локальный сервер, прогоняет сквозные тесты и правит баг до зеленого статуса.
+              </p>
+            </div>
+            <ul class="bento-bullets">
+              <li class="bento-bullet">Автономный поиск и исправление багов по стектрейсу консоли</li>
+              <li class="bento-bullet">Самовосстанавливающиеся сквозные E2E тесты (Playwright)</li>
+              <li class="bento-bullet">Сборка и автоматический деплой боевого SaaS-сервиса за 7 дней</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         Stage 5: Pricing, Action & Risk Reversal
+         ======================================================================== -->
+    <section class="section-spacing" id="pricing">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-eyebrow">
+            <span class="pulse-dot"></span> Инвестиция в вашу ценность
+          </span>
+          <h2 class="section-title">Тарифы на обучение в ContextForge</h2>
+          <p class="section-description">
+            Покупка курса окупается в первый же месяц: вы экономите более 100 часов рутины и получаете навыки архитектора, чья скорость превосходит классическую команду.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Tier 1: Engineer -->
+          <div class="pricing-card">
+            <div class="pricing-badge">
+              <span class="badge">Для разработчиков</span>
+            </div>
+            <h3 class="pricing-name">Инженер</h3>
+            <p class="pricing-desc">
+              Для тех, кто хочет ускорить личную разработку в 5 раз, победить спагетти-код и писать чистые продакшн-системы.
+            </p>
+
+            <div class="pricing-price-box">
+              <div class="pricing-amount">24 900 ₽</div>
+              <div class="pricing-installment">от 2 075 ₽ / мес в рассрочку без %</div>
+            </div>
+
+            <ul class="pricing-features">
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span>Доступ ко всем 4 модулям (40+ уроков и практических заданий)</span>
+              </li>
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span>Готовый Starter Kit с шаблонами .cursorrules под 6 популярных стеков</span>
+              </li>
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span>Библиотека инженерных PRD и архитектурных спецификаций</span>
+              </li>
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span>Бессрочный доступ к обновлениям курса при выходе новых моделей</span>
+              </li>
+            </ul>
+
+            <button class="btn btn-secondary" style="width: 100%;" data-open-modal="workshop">
+              Выбрать тариф «Инженер»
+            </button>
+          </div>
+
+          <!-- Tier 2: Architect (Featured) -->
+          <div class="pricing-card featured">
+            <div class="pricing-badge">
+              <span class="badge badge-success">Выбор большинства</span>
+            </div>
+            <h3 class="pricing-name">Архитектор</h3>
+            <p class="pricing-desc">
+              Полное погружение с личным код-ревью вашего реального проекта от автора и членством в клубе практиков.
+            </p>
+
+            <div class="pricing-price-box">
+              <div class="pricing-amount">39 900 ₽</div>
+              <div class="pricing-installment">от 3 325 ₽ / мес в рассрочку без %</div>
+            </div>
+
+            <ul class="pricing-features">
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span><strong>Всё, что входит в тариф «Инженер»</strong></span>
+              </li>
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span>Личный аудит и код-ревью вашей архитектуры или SaaS-проекта</span>
+              </li>
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span>Закрытый клуб AI-архитекторов (Discord / Telegram) с разбором багов</span>
+              </li>
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span>Еженедельные живые сессии «Лаборатории агентов» с автором</span>
+              </li>
+              <li class="pricing-feature-item">
+                <span class="pricing-feature-icon">✓</span>
+                <span>Верифицированный сертификат об окончании курса</span>
+              </li>
+            </ul>
+
+            <button class="btn btn-primary" style="width: 100%;" data-open-modal="workshop">
+              Выбрать тариф «Архитектор»
+            </button>
+          </div>
+        </div>
+
+        <!-- Risk Reversal Guarantee Box -->
+        <div class="guarantee-box">
+          <div class="guarantee-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="guarantee-title">7 дней безусловной гарантии возврата</div>
+            <div class="guarantee-text">
+              Если в течение первой недели обучения вы решите, что формат вам не подходит — мы вернем 100% денег без лишних вопросов и бюрократии.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         Stage 6: Frequently Asked Questions (FAQ)
+         ======================================================================== -->
+    <section class="section-spacing" id="faq" style="background: var(--bg-secondary);">
+      <div class="container" style="max-width: 860px;">
+        <div class="section-header center">
+          <h2 class="section-title">Часто задаваемые вопросы</h2>
+          <p class="section-description">
+            Честные ответы на главные сомнения перед стартом обучения.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">А если используемые инструменты устареют через месяц?</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+              Мы учим не конкретным кнопкам в интерфейсе, а фундаментальным принципам: управлению окном контекста, спецификациям (Spec-Driven Development), изоляции данных через RLS и декомпозиции задач. Эти принципы универсальны и будут работать с любыми будущими моделями (GPT-5, Claude 4 и далее).
+            </p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">Подойдет ли курс, если у меня нет опыта Senior-разработчика?</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+              Да. Достаточно базового понимания веб-разработки (HTML, базовый JavaScript, представление о базах данных). Курс построен так, что сложные концепции вроде Row-Level Security и архитектуры серверов объясняются на наглядных практических примерах с готовыми шаблонами.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">Чем это отличается от бесплатных роликов на YouTube?</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+              На YouTube показывают 10-минутные «игрушечные» примеры клонов простых приложений на пустых папках. В реальности разработчики спотыкаются о миграции, авторизацию, гонки состояний и ограничение контекста. ContextForge дает готовую, проверенную в боевых условиях инженерную систему с шаблонами и закрытым комьюнити практиков.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo">
+            <div class="brand-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+              </svg>
+            </div>
+            <span>Context<span style="color: var(--accent-primary);">Forge</span></span>
+          </a>
+          <p class="footer-desc">
+            Школа прикладного AI-инжиниринга. Обучаем системному управлению нейросетями, архитектуре и автономным агентам.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <span class="footer-col-title">Навигация</span>
+            <a href="#ide-demo" class="footer-link">Интерактивное демо</a>
+            <a href="#anti-hype" class="footer-link">Сравнение подходов</a>
+            <a href="#starter-kit" class="footer-link">Боевой .cursorrules</a>
+            <a href="#curriculum" class="footer-link">Программа модулей</a>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-col-title">Материалы</span>
+            <a href="#" class="footer-link" data-open-modal="workshop">Бесплатный воркшоп</a>
+            <a href="#pricing" class="footer-link">Тарифы и рассрочка</a>
+            <a href="#" class="footer-link" data-open-modal="legal">Политика конфиденциальности</a>
+            <a href="#" class="footer-link" data-open-modal="legal">Договор оферты</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 ContextForge. Все права защищены. Портфолио-проект демонстрации дизайн-системы.
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="pulse-dot"></span>
+          <span>Все системы активны • Доступ открыт</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       Modals: Workshop Registration & Legal Draft
+       ======================================================================== -->
+  <!-- Workshop Registration Modal -->
+  <div class="modal-overlay" id="modal-workshop" role="dialog" aria-modal="true" aria-labelledby="modal-workshop-title">
+    <div class="modal-card">
+      <button class="modal-close-btn" data-modal-close aria-label="Закрыть модальное окно">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <h3 class="modal-title" id="modal-workshop-title">Доступ к материалам и воркшопу</h3>
+      <p class="modal-sub">
+        Получите видео-запись воркшопа «Сборка биллинга с Supabase за 40 минут» и ссылку на закрытый репозиторий с шаблонами.
+      </p>
+
+      <form class="modal-form" id="workshop-form">
+        <div class="form-group">
+          <label class="form-label" for="ws-name">Ваше имя</label>
+          <input class="form-input" id="ws-name" type="text" placeholder="Александр" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ws-email">Рабочий Email</label>
+          <input class="form-input" id="ws-email" type="email" placeholder="alex@company.com" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;">
+          Получить доступ мгновенно
+        </button>
+
+        <p class="form-demo-note">
+          🔒 Тестовый демонстрационный режим для портфолио. Персональные данные не сохраняются.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Legal Modal Draft -->
+  <div class="modal-overlay" id="modal-legal" role="dialog" aria-modal="true" aria-labelledby="modal-legal-title">
+    <div class="modal-card" style="max-width: 640px;">
+      <button class="modal-close-btn" data-modal-close aria-label="Закрыть">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <h3 class="modal-title" id="modal-legal-title">Правовая информация</h3>
+      <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; max-height: 350px; overflow-y: auto; padding-right: 0.5rem; margin: 1rem 0;">
+        <p style="margin-bottom: 0.75rem;"><strong>1. Общие положения</strong><br>
+        Данный сайт является демонстрационным концептом (портфолио-проектом) продуктового лендинга ContextForge. Все торговые марки (Cursor, Supabase, Next.js, Vercel) принадлежат их законным правообладателям.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>2. Гарантия возврата</strong><br>
+        Курс предусматривает 100% возврат денежных средств в течение первых 7 (семи) календарных дней с момента старта потока по первому требованию студента.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>3. Защита данных</strong><br>
+        В демонстрационном режиме введенные данные обрабатываются локально в сессии браузера и не передаются третьим лицам.</p>
+      </div>
+
+      <button type="button" class="btn btn-secondary" data-modal-close style="width: 100%;">
+        Понятно
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
